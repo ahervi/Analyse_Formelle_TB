@@ -1,0 +1,23 @@
+read_module ZG2.rm
+read_spec ZG_CTL.spec
+
+atl_check ZG2 terminaison_possible
+atl_check ZG2 terminaison_inévitable
+atl_check ZG2 viabilité_possible
+atl_check ZG2 viabilité_inévitable
+atl_check ZG2 timeliness_possible_A
+atl_check ZG2 timeliness_inévitable_A
+atl_check ZG2 timeliness_possible_B
+atl_check ZG2 timeliness_inévitable_B
+atl_check ZG2 non_repudiation_possible_A_1
+atl_check ZG2 non_repudiation_possible_A_2
+atl_check ZG2 non_repudiation_inévitable_A_1
+atl_check ZG2 non_repudiation_inévitable_A_2
+atl_check ZG2 non_repudiation_possible_B_1
+atl_check ZG2 non_repudiation_possible_B_2
+atl_check ZG2 non_repudiation_inévitable_B_1
+atl_check ZG2 non_repudiation_inévitable_B_2
+
+exit
+
+

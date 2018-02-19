@@ -1,0 +1,350 @@
+-- fichier ZG2.rm
+
+-- Protocole de non répudiation de Zhou & Gollmann 97
+
+----> sans perte de message
+
+----> sans rétablissement
+
+----> sans timer 
+
+
+
+-- Initiateur honnête de la communication : Ah
+
+-- Participant honnête à la communication : Bh
+
+-- Réseau à délai fini et non fiable entre Ah et Bh : reseau_delai_fini_non_fiable_A_B
+
+-- ZG2 := Ah || Bh || reseau_delai_fini_fiable_A_B
+
+
+
+module Bh
+
+	external 
+
+		M1 , M3 : bool
+
+	interface	
+
+		pcB : (0..8);
+
+		sendM2, sendM4 : bool;
+
+		Mb , Kb, Tb, Cb : bool; 
+
+		EOOb, EORb, EOOk_b, EORk_b : bool; 
+
+		f_EOOb, f_EOOk_b, f_EORb, f_EORk_b, f_CONk_b : bool;
+
+		STOPb : bool
+
+	
+
+	atom B_honest
+
+	controls
+
+		pcB,
+
+		sendM2,	sendM4,
+
+		Mb, Kb, Tb, Cb,
+
+		EOOb, EORb, EOOk_b, EORk_b,
+
+		f_EOOb, f_EORb, f_EOOk_b, f_EORk_b, f_CONk_b,
+
+		STOPb
+
+
+
+	reads
+
+		M1, M3,
+
+		pcB,
+
+		sendM2, sendM4,
+
+		Mb, Kb, Cb, Tb,
+
+		EOOb, EORb, EOOk_b, EORk_b,
+
+		f_EOOb, f_EOOk_b, f_EORb, f_EORk_b, f_CONk_b,
+
+		STOPb 
+
+		
+
+		
+
+		
+
+	init
+
+		[] true -> 	
+
+			pcB':=0;
+
+			sendM2':= false; sendM4':= false;
+
+			Mb':= false; Kb':= false; Tb':= false; Cb':= false;
+
+			EOOb':= false; EORb':= false; EOOk_b':= false; EORk_b':= false;
+
+			f_EOOb':= false; f_EORb':= true; f_EOOk_b':= false; f_EORk_b':= true; f_CONk_b' := false;
+
+			STOPb':= false 
+
+				
+
+
+
+ 	update 
+
+-- réception de m1
+
+	[] (pcB=0) & M1 -> f_EOOb':= true; EOOb':= true; pcB':=1; Cb' := true
+
+
+
+-- calcul de EORb
+
+	[] (pcB=1) & f_EOOb & EOOb & Cb -> f_EORb' := true; EORb':= true; pcB':=2
+
+
+
+-- émission de m2
+
+	[] (pcB=2) & f_EORb & EORb -> sendM2':= true; pcB':=3
+
+
+
+-- réception de m3
+
+	[] (pcB=3) & sendM2 & M3 -> f_EOOk_b':= true; EOOk_b':= true; Kb' := true; pcB':=4
+
+
+
+-- calcul de EORk_b
+
+	[] (pcB=4) & f_EOOk_b & EOOk_b & Kb -> f_EORk_b' := true; EORk_b':= true; pcB':=5
+
+
+
+-- émission de m4
+
+	[] (pcB=5) & f_EORk_b & Kb & EORk_b -> sendM4':= true; pcB':=6
+
+
+
+-- arrêt de B
+
+	[] (pcB=6) -> STOPb':=true; pcB':=7
+
+
+
+endatom
+
+endmodule
+
+
+
+
+
+module Ah
+
+	external 
+
+		M2 , M4 : bool
+
+	interface	
+
+		pcA : (0..8);
+
+		sendM1, sendM3 : bool;
+
+		Ma , Ka, Ta, Ca : bool; 
+
+		EOOa, EORa, EOOk_a, EORk_a : bool; 
+
+		f_EOOa, f_EOOk_a, f_EORa, f_EORk_a : bool;
+
+		STOPa : bool
+
+	
+
+	atom A_honest
+
+	controls
+
+		pcA,
+
+		sendM1,	sendM3,
+
+		Ma, Ka, Ta, Ca,
+
+		EOOa, EORa, EOOk_a, EORk_a,
+
+		f_EOOa, f_EORa, f_EOOk_a, f_EORk_a,
+
+		STOPa
+
+
+
+	reads
+
+		M2, M4,
+
+		pcA,
+
+		sendM1, sendM3,
+
+		Ma, Ka, Ca, Ta,
+
+		EOOa, EORa, EOOk_a, EORk_a,
+
+		f_EOOa, f_EOOk_a, f_EORa, f_EORk_a,
+
+		STOPa 
+
+		
+
+		
+
+		
+
+	init
+
+		[] true -> 	
+
+			pcA':=0;
+
+			sendM1':= false; sendM3':= false;
+
+			Ma':= true; Ka':= true; Ta':= true; Ca':= false;
+
+			EOOa':= false; EORa':= false; EOOk_a':= false; EORk_a':= false;
+
+			f_EOOa':= true; f_EORa':= false; f_EOOk_a':= true; f_EORk_a':= false;
+
+			STOPa':= false 
+
+				
+
+
+
+ 	update 
+
+-- calcul de Ca = h(Ka,Ma)
+
+	[] (pcA=0) & Ma & Ka & ~Ca -> Ca':=true; pcA':=1 
+
+
+
+-- calcul de EOOa
+
+	[] (pcA=1) & f_EOOa & Ta & Ca -> EOOa':= true; pcA':=2
+
+
+
+-- émission de m1
+
+	[] (pcA=2) & f_EOOa & Ta & Ca & EOOa -> sendM1':= true; pcA':=3
+
+
+
+-- réception de m2
+
+	[] (pcA=3) & sendM1 & M2 -> f_EORa':= true; EORa':= true; pcA':=4
+
+
+
+-- calcul de EOOk_a
+
+	[] (pcA=4) & f_EOOk_a & Ta & Ka -> EOOk_a':= true; pcA':=5
+
+
+
+-- émission de m3
+
+	[] (pcA=5) & f_EOOk_a & Ka & EOOk_a -> sendM3':= true; pcA':=6
+
+
+
+-- réception de m4
+
+	[] (pcA=6) & M4 -> f_EORk_a':=true; EORk_a':=true; pcA':=7
+
+
+
+-- arrêt de A
+
+	[] (pcA=7) -> STOPa':=true; pcA':=8
+
+
+
+endatom
+
+endmodule
+
+
+
+
+module reseau_delai_fini_non_fiable_A_B
+	external sendM1, sendM3, sendM2, sendM4 : bool
+	interface M1, M3, M2, M4 : bool
+	atom canal_A2B_non_fiable
+	controls M1, M3
+	reads sendM1, sendM3, M1, M3
+	init	[] true -> M1':=false; M3':=false
+	update
+-- transmission fiable de M1		
+		[] sendM1 & ~M1 -> M1':=true
+-- transmission non fiable de M1	
+		[] sendM1 & ~M1 -> M1':=M1
+-- transmission fiable de M3
+		[] sendM3 & ~M3 -> M3':=true
+-- transmission fiable de M3
+		[] sendM3 & ~M3 -> M3':=M3
+	endatom
+	atom canal_B2A_non_fiable
+	controls M2, M4
+	reads sendM2, sendM4, M2, M4
+	init 	[] true -> M2':=false; M4':=false
+	update
+-- transmission fiable de M2
+		[] sendM2 & ~M2 -> M2':=true
+-- transmission non fiable de M2
+		[] sendM2 & ~M2 -> M2':=M2
+-- transmission fiable de M4
+		[] sendM4 & ~M4 -> M4':=true
+-- transmission non fiable de M4
+		[] sendM4 & ~M4 -> M4':=M4
+endatom
+endmodule
+
+
+
+
+
+
+ZG2 := Ah || Bh || reseau_delai_fini_non_fiable_A_B
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

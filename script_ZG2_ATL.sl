@@ -1,0 +1,46 @@
+read_module ZG2.rm
+read_spec ZG2_ATL.spec
+
+atl_check ZG2 terminaison
+atl_check ZG2 terminaison_A
+atl_check ZG2 terminaison_A_B
+atl_check ZG2 terminaison_A_Reseau
+atl_check ZG2 terminaison_A_B_Reseau
+atl_check ZG2 terminaison_B
+atl_check ZG2 terminaison_B_Reseau
+atl_check ZG2 terminaison_Reseau
+atl_check ZG2 viabilite
+atl_check ZG2 viabilite_A
+atl_check ZG2 viabilite_A_B
+atl_check ZG2 viabilite_A_Reseau
+atl_check ZG2 viabilite_A_B_Reseau
+atl_check ZG2 viabilite_B
+atl_check ZG2 viabilite_B_Reseau
+atl_check ZG2 viabilite_Reseau
+atl_check ZG2 Atimeliness
+atl_check ZG2 Atimeliness_A
+atl_check ZG2 Atimeliness_A_B
+atl_check ZG2 Atimeliness_A_Reseau
+atl_check ZG2 Atimeliness_A_B_Reseau
+atl_check ZG2 Atimeliness_B
+atl_check ZG2 Atimeliness_B_Reseau
+atl_check ZG2 Atimeliness_Reseau
+atl_check ZG2 Btimeliness
+atl_check ZG2 Btimeliness_A
+atl_check ZG2 Btimeliness_A_B
+atl_check ZG2 Btimeliness_A_Reseau
+atl_check ZG2 Btimeliness_A_B_Reseau
+atl_check ZG2 Btimeliness_B
+atl_check ZG2 Btimeliness_B_Reseau
+atl_check ZG2 Btimeliness_Reseau
+atl_check ZG2 A_non_repudiation
+atl_check ZG2 A_non_repudiation_B
+atl_check ZG2 A_non_repudiation_B_reseau
+atl_check ZG2 A_non_repudiation_reseau
+atl_check ZG2 B_non_repudiation
+atl_check ZG2 B_non_repudiation_A
+atl_check ZG2 B_non_repudiation_A_reseau
+atl_check ZG2 B_non_repudiation_reseau
+exit
+
+

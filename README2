@@ -1,0 +1,5 @@
+Use tcsh:
+tcsh
+source csetup
+Now use mocha
+./mocha -t

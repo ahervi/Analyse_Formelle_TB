@@ -1,0 +1,93 @@
+Welcome to MOCHA 1.0
+Please report any problems to mocha@eecs.berkeley.edu
+Module Bh is composed and checked in.
+Module Ah is composed and checked in.
+Module reseau_delai_fini_non_fiable_A_B is composed and checked in.
+Module ZG2 is composed and checked in.
+parse successful.
+terminaison
+terminaison_A
+terminaison_A_B
+terminaison_A_Reseau
+terminaison_A_B_Reseau
+terminaison_B
+terminaison_B_Reseau
+terminaison_Reseau
+viabilite
+viabilite_A
+viabilite_A_B
+viabilite_A_Reseau
+viabilite_A_B_Reseau
+viabilite_B
+viabilite_B_Reseau
+viabilite_Reseau
+Atimeliness
+Atimeliness_A
+Atimeliness_A_B
+Atimeliness_A_Reseau
+Atimeliness_A_B_Reseau
+Atimeliness_B
+Atimeliness_B_Reseau
+Atimeliness_Reseau
+Btimeliness
+Btimeliness_A
+Btimeliness_A_B
+Btimeliness_A_Reseau
+Btimeliness_A_B_Reseau
+Btimeliness_B
+Btimeliness_B_Reseau
+Btimeliness_Reseau
+A_non_repudiation
+A_non_repudiation_B
+A_non_repudiation_B_reseau
+A_non_repudiation_reseau
+B_non_repudiation
+B_non_repudiation_A
+B_non_repudiation_A_reseau
+B_non_repudiation_reseau
+Ordering variables using sym_static_order
+Transition relation computed : 4 conjuncts
+Calling Dynamic Reordering with sift
+Done initializing image info...
+ATL_CHECK: formula "terminaison" failed
+ATL_CHECK: formula "terminaison_A" failed
+ATL_CHECK: formula "terminaison_A_B" failed
+ATL_CHECK: formula "terminaison_A_Reseau" passed
+ATL_CHECK: formula "terminaison_A_B_Reseau" passed
+ATL_CHECK: formula "terminaison_B" failed
+ATL_CHECK: formula "terminaison_B_Reseau" passed
+ATL_CHECK: formula "terminaison_Reseau" passed
+ATL_CHECK: formula "viabilite" failed
+ATL_CHECK: formula "viabilite_A" failed
+ATL_CHECK: formula "viabilite_A_B" failed
+ATL_CHECK: formula "viabilite_A_Reseau" passed
+ATL_CHECK: formula "viabilite_A_B_Reseau" passed
+ATL_CHECK: formula "viabilite_B" failed
+ATL_CHECK: formula "viabilite_B_Reseau" passed
+ATL_CHECK: formula "viabilite_Reseau" passed
+ATL_CHECK: formula "Atimeliness" failed
+ATL_CHECK: formula "Atimeliness_A" failed
+ATL_CHECK: formula "Atimeliness_A_B" failed
+ATL_CHECK: formula "Atimeliness_A_Reseau" passed
+ATL_CHECK: formula "Atimeliness_A_B_Reseau" passed
+ATL_CHECK: formula "Atimeliness_B" failed
+ATL_CHECK: formula "Atimeliness_B_Reseau" passed
+ATL_CHECK: formula "Atimeliness_Reseau" passed
+ATL_CHECK: formula "Btimeliness" failed
+ATL_CHECK: formula "Btimeliness_A" failed
+ATL_CHECK: formula "Btimeliness_A_B" failed
+ATL_CHECK: formula "Btimeliness_A_Reseau" passed
+ATL_CHECK: formula "Btimeliness_A_B_Reseau" passed
+ATL_CHECK: formula "Btimeliness_B" failed
+ATL_CHECK: formula "Btimeliness_B_Reseau" passed
+ATL_CHECK: formula "Btimeliness_Reseau" passed
+ATL_CHECK: formula "A_non_repudiation" passed
+ATL_CHECK: formula "A_non_repudiation_B" passed
+ATL_CHECK: formula "A_non_repudiation_B_reseau" failed
+ATL_CHECK: formula "A_non_repudiation_reseau" failed
+ATL_CHECK: formula "B_non_repudiation" passed
+ATL_CHECK: formula "B_non_repudiation_A" passed
+ATL_CHECK: formula "B_non_repudiation_A_reseau" passed
+ATL_CHECK: formula "B_non_repudiation_reseau" passed
+Thank you for using MOCHA 1.0
+
