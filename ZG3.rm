@@ -36,7 +36,7 @@ module Ah
 
 		sendM1, sendM3 : bool;
 
-		Ma , Ka, Ta, Ca : bool; 
+		Ma , Ka, Ca : bool; 
 
 		EOOa, EORa, EOOk_a, EORk_a : bool; 
 
@@ -125,13 +125,13 @@ module Ah
 
 -- calcul de EOOa
 
-	[] (pcA=1) & f_EOOa & Ta & Ca -> EOOa':= true; pcA':=2
+	[] (pcA=1) & f_EOOa & Ca -> EOOa':= true; pcA':=2
 
 
 
 -- émission de m1
 
-	[] (pcA=2) & f_EOOa & Ta & Ca & EOOa -> sendM1':= true; pcA':=3; timer_triggered_ATmsg2':= true; timer_triggered_Tglobal':=true
+	[] (pcA=2) & f_EOOa & Ca & EOOa -> sendM1':= true; pcA':=3; timer_triggered_ATmsg2':= true; timer_triggered_Tglobal':=true
 
 
 
@@ -143,7 +143,7 @@ module Ah
 
 -- calcul de EOOk_a
 
-	[] (pcA=4) & f_EOOk_a & Ta & Ka -> EOOk_a':= true; pcA':=5
+	[] (pcA=4) & f_EOOk_a & Ka -> EOOk_a':= true; pcA':=5
 
 
 
