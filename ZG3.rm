@@ -43,7 +43,7 @@ module Bh
 
 		STOPb : bool;
 
-		timer_triggered_ATmsg2, timer_triggered_ATmsg4: bool,
+		timer_triggered_BTmsg3: bool
 
 	
 
@@ -61,7 +61,10 @@ module Bh
 
 		f_EOOb, f_EORb, f_EOOk_b, f_EORk_b, f_CONk_b,
 
-		STOPb
+		STOPb,
+
+		timer_triggered_BTmsg3
+
 
 
 
@@ -165,7 +168,7 @@ module Ah
 
 		M2 , M4 : bool;
 
-		TimeOut_BTmsg3 : bool
+		TimeOut_ATmsg2, TimeOut_ATmsg4 : bool
 
 	interface	
 
@@ -181,7 +184,7 @@ module Ah
 
 		STOPa : bool;
 
-		timer_triggered_BTmsg3 : bool
+		TimeOut_ATmsg2, TimeOut_ATmsg4 : bool
 
 	
 
