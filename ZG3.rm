@@ -104,7 +104,7 @@ module Ah
 
 			Ma':= true; Ka':= true; Ca':= false;
 
-			EOOa':= false; EORa':= false; EOOk_a':= false; EORk_a':= false; SUBk_a':= false, CONk_a':=false,
+			EOOa':= false; EORa':= false; EOOk_a':= false; EORk_a':= false, SUBk_a':= false, CONk_a':=false,
 
 			f_EOOa':= true; f_EORa':= false; f_EOOk_a':= true; f_EORk_a':= false; f_SUBk_a':= false, f_CONk_a':=false,
 
