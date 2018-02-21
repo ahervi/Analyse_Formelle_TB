@@ -258,7 +258,7 @@ module Bh
 
 		Mb, Kb, Cb, Tb,
 
-		EOOb, EORb, EOOk_b, EORk_b, CONk_b
+		EOOb, EORb, EOOk_b, EORk_b, CONk_b,
 
 		f_EOOb, f_EOOk_b, f_EORb, f_EORk_b, f_CONk_b,
 
