@@ -202,7 +202,7 @@ module Bh
 
 	external 
 
-		M1 , M3 : bool;
+		M1 , M3 , M6 : bool;
 
 		TimeOut_BTmsg3, TimeOut_Tglobal : bool
 
@@ -248,7 +248,7 @@ module Bh
 
 	reads
 
-		M1, M3,
+		M1, M3, M6,
 
 		TimeOut_BTmsg3, TimeOut_Tglobal,
 
