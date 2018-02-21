@@ -74,7 +74,7 @@ module Ah
 
 		pcA,
 
-		sendM1, sendM3,
+		sendM1, sendM3, sendM5,
 
 		Ma, Ka, Ca,
 
