@@ -204,7 +204,7 @@ module Bh
 
 		M1 , M3 : bool;
 
-		TimeOut_BTmsg3, TimeOut_Tglobal : bool;
+		TimeOut_BTmsg3, TimeOut_Tglobal : bool
 
 
 	interface	
