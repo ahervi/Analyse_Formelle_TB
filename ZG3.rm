@@ -155,7 +155,7 @@ module Ah
 
 -- emission de m3 et armement de Tmsg4
 
-	[] (pcA=5) & f_EOOk_a & Ka & EOOk_a -> sendM3':= true; timer_triggered_ATmsg4':= true; f_SUBk_a:=true; pcA':=6;
+	[] (pcA=5) & f_EOOk_a & Ka & EOOk_a -> sendM3':= true; timer_triggered_ATmsg4':= true; f_SUBk_a':=true; pcA':=6;
 
 
 -- expiration de Tmsg4 apres l'emission de m3 SANS retablissement
