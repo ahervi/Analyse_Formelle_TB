@@ -84,7 +84,7 @@ module Ah
 
 		STOPa,
 
-		timer_triggered_ATmsg2, timer_triggered_ATmsg4, timer_triggered_Tglobal,
+		timer_triggered_ATmsg2, timer_triggered_ATmsg4, timer_triggered_Tglobal
 
 		
 
