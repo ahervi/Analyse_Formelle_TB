@@ -1,22 +1,22 @@
 -- fichier ZG3.rm
--- protocole de non répudiation de Zhou & Gollmann 97 offline 2
+-- protocole de non repudiation de Zhou & Gollmann 97 offline 2
 ----> perte de message
-----> rétablissement
+----> retablissement
 ----> timers locaux
 ----> 1 timer global
 
--- initiateur honnête de la communication : Ah
--- participant honnête à la communication : Bh
+-- initiateur honnete de la communication : Ah
+-- participant honnete a la communication : Bh
 -- tiers de confiance : 1/3_C
 
--- réseau à délai fini mais non fiable : reseau_delai_fini_non_fiable_A_B_Tiers
+-- reseau a delai fini mais non fiable : reseau_delai_fini_non_fiable_A_B_Tiers
 -- fiables : Ah <--> 1/3_C et Bh <--> 1/3_C ; non fiable : Ah <--> Bh
 
--- Introduction de timers représentés par des atomes : 
+-- Introduction de timers representes par des atomes : 
 ------ 3 Timers locaux :
----------- pour A : timerr_ATmsg2 armé après l'émission du premier message 
----------- pour A : timerr_ATmsg4 armé après l'émission du troisième message 
----------- pour B : timerr_B1 armé après l'émission du deuxième message
+---------- pour A : timerr_ATmsg2 arme après l'emission du premier message 
+---------- pour A : timerr_ATmsg4 arme après l'emission du troisième message 
+---------- pour B : timerr_B1 arme après l'emission du deuxième message
 ------ Un timer globale : timerr
 -- Un seul module Horloge regroupant les timers
 
@@ -129,13 +129,17 @@ module Ah
 
 
 
--- émission de m1
+-- emission de m1 et armement de Tmsg2
 
 	[] (pcA=2) & f_EOOa & Ca & EOOa -> sendM1':= true; pcA':=3; timer_triggered_ATmsg2':= true; timer_triggered_Tglobal':=true
 
 
+-- expiration de Tmsg2 apres l'emission de m1
 
--- réception de m2
+	[] (pcA=3) & sendM1 & ~M2 & TimeOut_ATmsg2 -> pcA':=7
+
+
+-- reception de m2
 
 	[] (pcA=3) & sendM1 & M2 -> f_EORa':= true; EORa':= true; pcA':=4
 
@@ -147,19 +151,23 @@ module Ah
 
 
 
--- émission de m3
+-- emission de m3 et armement de Tmsg4
 
 	[] (pcA=5) & f_EOOk_a & Ka & EOOk_a -> sendM3':= true; pcA':=6; timer_triggered_ATmsg4':= true
 
 
+-- expiration de Tmsg4 apres l'emission de m3 sans retablissement
 
--- réception de m4
+	[] (pcA=6) & sendM3 & ~M4 & TimeOut_ATmsg4 -> pcA':=7
+
+
+-- reception de m4
 
 	[] (pcA=6) & M4 -> f_EORk_a':=true; EORk_a':=true; pcA':=7
 
 
 
--- arrêt de A
+-- arret de A
 
 	[] (pcA=7) -> STOPa':=true; pcA':=8
 
@@ -267,7 +275,7 @@ module Bh
 
  	update 
 
--- réception de m1
+-- reception de m1
 
 	[] (pcB=0) & M1 -> f_EOOb':= true; EOOb':= true; pcB':=1; Cb' := true
 
@@ -279,13 +287,13 @@ module Bh
 
 
 
--- émission de m2
+-- emission de m2
 
 	[] (pcB=2) & f_EORb & EORb -> sendM2':= true; pcB':=3; timer_triggered_BTmsg3':= true
 
 
 
--- réception de m3
+-- reception de m3
 
 	[] (pcB=3) & sendM2 & M3 -> f_EOOk_b':= true; EOOk_b':= true; Kb' := true; pcB':=4
 
@@ -297,13 +305,13 @@ module Bh
 
 
 
--- émission de m4
+-- emission de m4
 
 	[] (pcB=5) & f_EORk_b & Kb & EORk_b -> sendM4':= true; pcB':=6
 
 
 
--- arrêt de B
+-- arret de B
 
 	[] (pcB=6) -> STOPb':=true; pcB':=7
 
@@ -401,11 +409,11 @@ module Tiers_de_confiance
 			f_SUBk':= false; f_CONk':=false;
 			SUBk':=false; CONk':=false
 	update
--- demande de rétablissement par la réception de m5
+-- demande de retablissement par la reception de m5
 	[] M5 & ~f_SUBk & ~TimeOut -> f_SUBk':=true; SUBk':=true; L':=true; T':=true; K':=true
 -- calcul de CONk
 	[] f_SUBk & ~CONk & L & T & K & ~f_CONk -> CONk':=true; f_CONk':=true
--- rétablissement des preuves partielles par l'émission de m6 et m7 
+-- retablissement des preuves partielles par l'emission de m6 et m7 
 	[] f_CONk & CONk & L & T & K & ~sendM6 & ~sendM7 -> sendM6':=true; sendM7':=true
 endatom
 endmodule
