@@ -38,9 +38,9 @@ module Ah
 
 		Ma , Ka, Ca : bool; 
 
-		EOOa, EORa, EOOk_a, EORk_a, SUBk_a, CONk_a, : bool; 
+		EOOa, EORa, EOOk_a, EORk_a, SUBk_a, CONk_a : bool; 
 
-		f_EOOa, f_EOOk_a, f_EORa, f_EORk_a, f_SUBk_a, f_CONk_a, : bool;
+		f_EOOa, f_EOOk_a, f_EORa, f_EORk_a, f_SUBk_a, f_CONk_a : bool;
 
 		STOPa : bool;
 
