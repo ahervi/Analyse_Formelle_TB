@@ -305,9 +305,9 @@ endmodule
 
 
 module Horloge
-	external timer_triggered_ATmsg2, timer_triggered_ATmsg4, timer_triggered_BTmsg3 : bool
-	interface TimeOut_ATmsg2, TimeOut_ATmsg4, TimeOut_BTmsg3 : bool
-	private timerOn_ATmsg2, timerOn_ATmsg4, timerOn_BTmsg3 : bool
+	external timer_triggered_ATmsg2, timer_triggered_ATmsg4, timer_triggered_BTmsg3, timer_triggered_Tglobal : bool
+	interface TimeOut_ATmsg2, TimeOut_ATmsg4, TimeOut_BTmsg3, TimeOut_Tglobal : bool
+	private timerOn_ATmsg2, timerOn_ATmsg4, timerOn_BTmsg3, timerOn_Tglobal : bool
 	
 	atom timerr_ATmsg2
 	controls TimeOut_ATmsg2, timerOn_ATmsg2
@@ -347,16 +347,16 @@ module Horloge
 		[] timerOn_BTmsg3 -> TimeOut_BTmsg3':=true; timerOn_BTmsg3':=false
 	endatom
 
-	atom timerr
-	controls TimeOut, timerOn
-	reads timer_triggered, timerOn, TimeOut
+	atom timerr_Tglobal
+	controls TimeOut_Tglobal, timerOn_Tglobal
+	reads timer_triggered_Tglobal, timerOn_Tglobal, TimeOut_Tglobal
 	
-	init	[] true -> TimeOut':= false; timerOn':=false
+	init	[] true -> TimeOut_Tglobal':= false; timerOn_Tglobal':=false
 	
 	update
-		[] timer_triggered & ~TimeOut -> timerOn':=true
-		[] timerOn -> 
-		[] timerOn -> TimeOut':=true; timerOn':=false
+		[] timer_triggered_Tglobal & ~TimeOut_Tglobal -> timerOn_Tglobal':=true
+		[] timerOn_Tglobal -> 
+		[] timerOn_Tglobal -> TimeOut_Tglobal':=true; timerOn_Tglobal':=false
 	endatom
 
 endmodule
