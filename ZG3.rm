@@ -26,7 +26,7 @@ module Ah
 
 	external 
 
-		M2 , M4 : bool;
+		M2 , M4, M7  : bool;
 
 		TimeOut_ATmsg2, TimeOut_ATmsg4, TimeOut_Tglobal : bool
 
@@ -34,13 +34,13 @@ module Ah
 
 		pcA : (0..8);
 
-		sendM1, sendM3 : bool;
+		sendM1, sendM3, sendM5 : bool;
 
 		Ma , Ka, Ca : bool; 
 
-		EOOa, EORa, EOOk_a, EORk_a : bool; 
+		EOOa, EORa, EOOk_a, EORk_a, SUBk_a, CONk_a, : bool; 
 
-		f_EOOa, f_EOOk_a, f_EORa, f_EORk_a : bool;
+		f_EOOa, f_EOOk_a, f_EORa, f_EORk_a, f_SUBk_a, f_CONk_a, : bool;
 
 		STOPa : bool;
 
@@ -53,13 +53,13 @@ module Ah
 
 		pcA,
 
-		sendM1,	sendM3,
+		sendM1,	sendM3, sendM5,
 
 		Ma, Ka, Ca,
 
-		EOOa, EORa, EOOk_a, EORk_a,
+		EOOa, EORa, EOOk_a, EORk_a, SUBk_a, CONk_a,
 
-		f_EOOa, f_EORa, f_EOOk_a, f_EORk_a,
+		f_EOOa, f_EORa, f_EOOk_a, f_EORk_a, f_SUBk_a, f_CONk_a,
 
 		STOPa,
 
@@ -68,7 +68,7 @@ module Ah
 
 	reads
 
-		M2, M4,
+		M2, M4, M7,
 
 		TimeOut_ATmsg2, TimeOut_ATmsg4, TimeOut_Tglobal,
 
@@ -78,13 +78,15 @@ module Ah
 
 		Ma, Ka, Ca,
 
-		EOOa, EORa, EOOk_a, EORk_a,
+		EOOa, EORa, EOOk_a, EORk_a, SUBk_a, CONk_a,
 
-		f_EOOa, f_EOOk_a, f_EORa, f_EORk_a,
+		f_EOOa, f_EOOk_a, f_EORa, f_EORk_a, f_SUBk_a, f_CONk_a,
 
 		STOPa,
 
-		timer_triggered_ATmsg2, timer_triggered_ATmsg4, timer_triggered_Tglobal
+		timer_triggered_ATmsg2, timer_triggered_ATmsg4, timer_triggered_Tglobal,
+
+		
 
 		
 
@@ -98,13 +100,13 @@ module Ah
 
 			pcA':=0;
 
-			sendM1':= false; sendM3':= false;
+			sendM1':= false; sendM3':= false; sendM5':= false;
 
 			Ma':= true; Ka':= true; Ca':= false;
 
-			EOOa':= false; EORa':= false; EOOk_a':= false; EORk_a':= false;
+			EOOa':= false; EORa':= false; EOOk_a':= false; EORk_a':= false; SUBk_a':= false, CONk_a':=false,
 
-			f_EOOa':= true; f_EORa':= false; f_EOOk_a':= true; f_EORk_a':= false;
+			f_EOOa':= true; f_EORa':= false; f_EOOk_a':= true; f_EORk_a':= false; f_SUBk_a':= false, f_CONk_a':=false,
 
 			STOPa':= false;
 
@@ -153,13 +155,31 @@ module Ah
 
 -- emission de m3 et armement de Tmsg4
 
-	[] (pcA=5) & f_EOOk_a & Ka & EOOk_a -> sendM3':= true; pcA':=6; timer_triggered_ATmsg4':= true
+	[] (pcA=5) & f_EOOk_a & Ka & EOOk_a -> sendM3':= true; timer_triggered_ATmsg4':= true; f_SUBk_a:=true; pcA':=6;
 
 
--- expiration de Tmsg4 apres l'emission de m3 sans retablissement
+-- expiration de Tmsg4 apres l'emission de m3 SANS retablissement
 
-	[] (pcA=6) & sendM3 & ~M4 & TimeOut_ATmsg4 -> pcA':=7
+	[] (pcA=6) & sendM3 & ~M4 & TimeOut_ATmsg4 & TimeOut_Tglobal -> pcA':=7
 
+
+-- expiration de Tmsg4 : debut du retablissment par le calcul de SUBk_a 
+
+	[] (pcA=6) & sendM3 & ~M4 & TimeOut_ATmsg4 & ~TimeOut_Tglobal & f_SUBk_a -> SUBk_a':=true; pcA':=9
+
+
+-- suite du retablissment : envoie de m5
+
+	[] (pcA=9) & SUBk_a -> sendM5':=true; pcA':=10
+
+
+-- suite du retablissment : reception de m7
+
+	[] (pcA=10) & sendM5 & M7 & ~TimeOut_Tglobal -> f_CONk_a':=true; CONk_a':=true; pcA':= 7
+
+-- suite du retablissment : expiration de Tglobal en attendant de m7
+
+	[] (pcA=10) & sendM5 & ~M7 & TimeOut_Tglobal -> pcA':= 7
 
 -- reception de m4
 
@@ -184,7 +204,8 @@ module Bh
 
 		M1 , M3 : bool;
 
-		TimeOut_BTmsg3, TimeOut_Tglobal : bool
+		TimeOut_BTmsg3, TimeOut_Tglobal : bool;
+
 
 	interface	
 
@@ -194,7 +215,7 @@ module Bh
 
 		Mb , Kb, Tb, Cb : bool; 
 
-		EOOb, EORb, EOOk_b, EORk_b : bool; 
+		EOOb, EORb, EOOk_b, EORk_b, CONk_b : bool; 
 
 		f_EOOb, f_EOOk_b, f_EORb, f_EORk_b, f_CONk_b : bool;
 
@@ -214,9 +235,9 @@ module Bh
 
 		Mb, Kb, Tb, Cb,
 
-		EOOb, EORb, EOOk_b, EORk_b,
+		EOOb, EORb, EOOk_b, EORk_b, CONk_b
 
-		f_EOOb, f_EORb, f_EOOk_b, f_EORk_b, f_CONk_b,
+		f_EOOb, f_EORb, f_EOOk_b, f_EORk_b, f_CONk_b
 
 		STOPb,
 
@@ -237,7 +258,7 @@ module Bh
 
 		Mb, Kb, Cb, Tb,
 
-		EOOb, EORb, EOOk_b, EORk_b,
+		EOOb, EORb, EOOk_b, EORk_b, CONk_b
 
 		f_EOOb, f_EOOk_b, f_EORb, f_EORk_b, f_CONk_b,
 
@@ -261,9 +282,9 @@ module Bh
 
 			Mb':= false; Kb':= false; Tb':= false; Cb':= false;
 
-			EOOb':= false; EORb':= false; EOOk_b':= false; EORk_b':= false;
+			EOOb':= false; EORb':= false; EOOk_b':= false; EORk_b':= false; CONk_b':= false;
 
-			f_EOOb':= false; f_EORb':= true; f_EOOk_b':= false; f_EORk_b':= true; f_CONk_b' := false;
+			f_EOOb':= false; f_EORb':= true; f_EOOk_b':= false; f_EORk_b':= true; f_CONk_b':= false;
 
 			STOPb':= false;
 
@@ -277,7 +298,7 @@ module Bh
 
 -- reception de m1
 
-	[] (pcB=0) & M1 -> f_EOOb':= true; EOOb':= true; pcB':=1; Cb' := true
+	[] (pcB=0) & M1 -> f_EOOb':= true; EOOb':= true; pcB':=1; Cb':= true
 
 
 
@@ -297,6 +318,23 @@ module Bh
 
 	[] (pcB=3) & sendM2 & M3 -> f_EOOk_b':= true; EOOk_b':= true; Kb' := true; pcB':=4
 
+
+-- expiration de Tmsg3 : SANS retablissment
+
+	[] (pcB=3) & sendM2 & ~M3 & TimeOut_BTmsg3 & TimeOut_Tglobal -> pcB':=6
+
+
+-- expiration de Tmsg3 : debut retablissment
+
+	[] (pcB=3) & sendM2 & ~M3 & TimeOut_BTmsg3 & ~TimeOut_Tglobal -> pcB':=8
+
+-- suite retablissement : reception de m6
+
+	[] (pcB=8) & M6 -> CONk_b':=true; f_CONk_b':=true; pcB':=6
+
+-- suite retablissement : expiration de Tglobal
+
+	[] (pcB=8) & ~M6 & TimeOut_Tglobal -> pcB':=6
 
 
 -- calcul de EORk_b
@@ -384,7 +422,7 @@ endmodule
 module Tiers_de_confiance 
 	external 
 		M5 : bool;
-		TimeOut : bool
+		TimeOut_Tglobal : bool
 	interface
 		sendM6, sendM7 : bool;
 		L, T, K : bool;
@@ -401,7 +439,7 @@ module Tiers_de_confiance
 		L, T, K,
 		CONk,
 		f_SUBk, f_CONk,
-		TimeOut
+		TimeOut_Tglobal
 	init
 		[] true ->
 			sendM6':=false; sendM7':=false;
@@ -410,7 +448,7 @@ module Tiers_de_confiance
 			SUBk':=false; CONk':=false
 	update
 -- demande de retablissement par la reception de m5
-	[] M5 & ~f_SUBk & ~TimeOut -> f_SUBk':=true; SUBk':=true; L':=true; T':=true; K':=true
+	[] M5 & ~f_SUBk & ~TimeOut_Tglobal -> f_SUBk':=true; SUBk':=true; L':=true; T':=true; K':=true
 -- calcul de CONk
 	[] f_SUBk & ~CONk & L & T & K & ~f_CONk -> CONk':=true; f_CONk':=true
 -- retablissement des preuves partielles par l'emission de m6 et m7 
