@@ -2,7 +2,7 @@
 -- protocole de non repudiation de Zhou & Gollmann 97 offline 2
 ----> perte de message
 ----> retablissement
-----> timers locaux
+----> timers locauxread_module ZG3.rm
 ----> 1 timer global
 
 -- initiateur honnete de la communication : Ah
@@ -235,9 +235,9 @@ module Bh
 
 		Mb, Kb, Tb, Cb,
 
-		EOOb, EORb, EOOk_b, EORk_b, CONk_b
+		EOOb, EORb, EOOk_b, EORk_b, CONk_b,
 
-		f_EOOb, f_EORb, f_EOOk_b, f_EORk_b, f_CONk_b
+		f_EOOb, f_EORb, f_EOOk_b, f_EORk_b, f_CONk_b,
 
 		STOPb,
 
