@@ -21,6 +21,155 @@
 -- Un seul module Horloge regroupant les timers
 
 
+
+module Ah
+
+	external 
+
+		M2 , M4 : bool;
+
+		TimeOut_ATmsg2, TimeOut_ATmsg4, TimeOut_Tglobal : bool
+
+	interface	
+
+		pcA : (0..8);
+
+		sendM1, sendM3 : bool;
+
+		Ma , Ka, Ta, Ca : bool; 
+
+		EOOa, EORa, EOOk_a, EORk_a : bool; 
+
+		f_EOOa, f_EOOk_a, f_EORa, f_EORk_a : bool;
+
+		STOPa : bool;
+
+		timer_triggered_ATmsg2, timer_triggered_ATmsg4, timer_triggered_Tglobal : bool
+	
+
+	atom A_honest
+
+	controls
+
+		pcA,
+
+		sendM1,	sendM3,
+
+		Ma, Ka Ca,
+
+		EOOa, EORa, EOOk_a, EORk_a,
+
+		f_EOOa, f_EORa, f_EOOk_a, f_EORk_a,
+
+		STOPa,
+
+		timer_triggered_ATmsg2, timer_triggered_ATmsg4, timer_triggered_Tglobal
+
+
+	reads
+
+		M2, M4,
+
+		TimeOut_ATmsg2, TimeOut_ATmsg4, TimeOut_Tglobal,
+
+		pcA,
+
+		sendM1, sendM3,
+
+		Ma, Ka, Ca,
+
+		EOOa, EORa, EOOk_a, EORk_a,
+
+		f_EOOa, f_EOOk_a, f_EORa, f_EORk_a,
+
+		STOPa,
+
+		timer_triggered_ATmsg2, timer_triggered_ATmsg4, timer_triggered_Tglobal
+
+		
+
+		
+
+		
+
+	init
+
+		[] true -> 	
+
+			pcA':=0;
+
+			sendM1':= false; sendM3':= false;
+
+			Ma':= true; Ka':= true; Ca':= false;
+
+			EOOa':= false; EORa':= false; EOOk_a':= false; EORk_a':= false;
+
+			f_EOOa':= true; f_EORa':= false; f_EOOk_a':= true; f_EORk_a':= false;
+
+			STOPa':= false;
+
+			timer_triggered_ATmsg2':= false; timer_triggered_ATmsg4':= false; timer_triggered_Tglobal':=false
+
+
+				
+
+
+
+ 	update 
+
+-- calcul de Ca = h(Ka,Ma)
+
+	[] (pcA=0) & Ma & Ka & ~Ca -> Ca':=true; pcA':=1 
+
+
+
+-- calcul de EOOa
+
+	[] (pcA=1) & f_EOOa & Ta & Ca -> EOOa':= true; pcA':=2
+
+
+
+-- émission de m1
+
+	[] (pcA=2) & f_EOOa & Ta & Ca & EOOa -> sendM1':= true; pcA':=3; timer_triggered_ATmsg2':= true; timer_triggered_Tglobal':=true
+
+
+
+-- réception de m2
+
+	[] (pcA=3) & sendM1 & M2 -> f_EORa':= true; EORa':= true; pcA':=4
+
+
+
+-- calcul de EOOk_a
+
+	[] (pcA=4) & f_EOOk_a & Ta & Ka -> EOOk_a':= true; pcA':=5
+
+
+
+-- émission de m3
+
+	[] (pcA=5) & f_EOOk_a & Ka & EOOk_a -> sendM3':= true; pcA':=6; timer_triggered_ATmsg4':= true
+
+
+
+-- réception de m4
+
+	[] (pcA=6) & M4 -> f_EORk_a':=true; EORk_a':=true; pcA':=7
+
+
+
+-- arrêt de A
+
+	[] (pcA=7) -> STOPa':=true; pcA':=8
+
+
+
+endatom
+
+endmodule
+
+
 module Bh
 
 	external 
@@ -72,6 +221,8 @@ module Bh
 
 		M1, M3,
 
+		TimeOut_BTmsg3, TimeOut_Tglobal,
+
 		pcB,
 
 		sendM2, sendM4,
@@ -82,7 +233,9 @@ module Bh
 
 		f_EOOb, f_EOOk_b, f_EORb, f_EORk_b, f_CONk_b,
 
-		STOPb 
+		STOPb,
+
+		timer_triggered_BTmsg3
 
 		
 
@@ -104,7 +257,9 @@ module Bh
 
 			f_EOOb':= false; f_EORb':= true; f_EOOk_b':= false; f_EORk_b':= true; f_CONk_b' := false;
 
-			STOPb':= false 
+			STOPb':= false;
+
+			timer_triggered_BTmsg3':=false
 
 				
 
@@ -126,7 +281,7 @@ module Bh
 
 -- émission de m2
 
-	[] (pcB=2) & f_EORb & EORb -> sendM2':= true; pcB':=3
+	[] (pcB=2) & f_EORb & EORb -> sendM2':= true; pcB':=3; timer_triggered_BTmsg3':= true
 
 
 
@@ -151,150 +306,6 @@ module Bh
 -- arrêt de B
 
 	[] (pcB=6) -> STOPb':=true; pcB':=7
-
-
-
-endatom
-
-endmodule
-
-
-
-
-
-module Ah
-
-	external 
-
-		M2 , M4 : bool;
-
-		TimeOut_ATmsg2, TimeOut_ATmsg4, TimeOut_Tglobal : bool
-
-	interface	
-
-		pcA : (0..8);
-
-		sendM1, sendM3 : bool;
-
-		Ma , Ka, Ta, Ca : bool; 
-
-		EOOa, EORa, EOOk_a, EORk_a : bool; 
-
-		f_EOOa, f_EOOk_a, f_EORa, f_EORk_a : bool;
-
-		STOPa : bool;
-
-		timer_triggered_ATmsg2, timer_triggered_ATmsg4, timer_triggered_Tglobal : bool
-	
-
-	atom A_honest
-
-	controls
-
-		pcA,
-
-		sendM1,	sendM3,
-
-		Ma, Ka, Ta, Ca,
-
-		EOOa, EORa, EOOk_a, EORk_a,
-
-		f_EOOa, f_EORa, f_EOOk_a, f_EORk_a,
-
-		STOPa,
-
-		timer_triggered_ATmsg2, timer_triggered_ATmsg4, timer_triggered_Tglobal
-
-
-	reads
-
-		M2, M4,
-
-		pcA,
-
-		sendM1, sendM3,
-
-		Ma, Ka, Ca, Ta,
-
-		EOOa, EORa, EOOk_a, EORk_a,
-
-		f_EOOa, f_EOOk_a, f_EORa, f_EORk_a,
-
-		STOPa 
-
-		
-
-		
-
-		
-
-	init
-
-		[] true -> 	
-
-			pcA':=0;
-
-			sendM1':= false; sendM3':= false;
-
-			Ma':= true; Ka':= true; Ta':= true; Ca':= false;
-
-			EOOa':= false; EORa':= false; EOOk_a':= false; EORk_a':= false;
-
-			f_EOOa':= true; f_EORa':= false; f_EOOk_a':= true; f_EORk_a':= false;
-
-			STOPa':= false 
-
-				
-
-
-
- 	update 
-
--- calcul de Ca = h(Ka,Ma)
-
-	[] (pcA=0) & Ma & Ka & ~Ca -> Ca':=true; pcA':=1 
-
-
-
--- calcul de EOOa
-
-	[] (pcA=1) & f_EOOa & Ta & Ca -> EOOa':= true; pcA':=2
-
-
-
--- émission de m1
-
-	[] (pcA=2) & f_EOOa & Ta & Ca & EOOa -> sendM1':= true; pcA':=3
-
-
-
--- réception de m2
-
-	[] (pcA=3) & sendM1 & M2 -> f_EORa':= true; EORa':= true; pcA':=4
-
-
-
--- calcul de EOOk_a
-
-	[] (pcA=4) & f_EOOk_a & Ta & Ka -> EOOk_a':= true; pcA':=5
-
-
-
--- émission de m3
-
-	[] (pcA=5) & f_EOOk_a & Ka & EOOk_a -> sendM3':= true; pcA':=6
-
-
-
--- réception de m4
-
-	[] (pcA=6) & M4 -> f_EORk_a':=true; EORk_a':=true; pcA':=7
-
-
-
--- arrêt de A
-
-	[] (pcA=7) -> STOPa':=true; pcA':=8
 
 
 
