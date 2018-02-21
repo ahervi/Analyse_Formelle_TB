@@ -27,7 +27,7 @@ module Bh
 
 		M1 , M3 : bool;
 
-		TimeOut_ATmsg2, TimeOut_ATmsg4 : bool
+		TimeOut_BTmsg3, TimeOut_Tglobal : bool
 
 	interface	
 
@@ -42,7 +42,7 @@ module Bh
 		f_EOOb, f_EOOk_b, f_EORb, f_EORk_b, f_CONk_b : bool;
 
 		STOPb : bool;
-
+		
 		timer_triggered_BTmsg3: bool
 
 	
@@ -168,7 +168,7 @@ module Ah
 
 		M2 , M4 : bool;
 
-		TimeOut_ATmsg2, TimeOut_ATmsg4 : bool
+		TimeOut_ATmsg2, TimeOut_ATmsg4, TimeOut_Tglobal : bool
 
 	interface	
 
@@ -184,8 +184,7 @@ module Ah
 
 		STOPa : bool;
 
-		TimeOut_ATmsg2, TimeOut_ATmsg4 : bool
-
+		timer_triggered_ATmsg2, timer_triggered_ATmsg4, timer_triggered_Tglobal : bool
 	
 
 	atom A_honest
@@ -202,8 +201,9 @@ module Ah
 
 		f_EOOa, f_EORa, f_EOOk_a, f_EORk_a,
 
-		STOPa
+		STOPa,
 
+		timer_triggered_ATmsg2, timer_triggered_ATmsg4, timer_triggered_Tglobal
 
 
 	reads
