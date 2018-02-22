@@ -1,0 +1,20 @@
+read_module ZG3.rm
+read_spec ZG3_ATL_viabilite.spec
+
+atl_check ZG3 viabilite
+atl_check ZG3 viabilite_A
+atl_check ZG3 viabilite_A_B
+atl_check ZG3 viabilite_A_Reseau
+atl_check ZG3 viabilite_A_Horloge
+atl_check ZG3 viabilite_A_B_Reseau
+atl_check ZG3 viabilite_A_B_Horloge
+atl_check ZG3 viabilite_A_Reseau_Horloge
+atl_check ZG3 viabilite_A_B_Reseau_Horloge
+atl_check ZG3 viabilite_B
+atl_check ZG3 viabilite_B_Reseau
+atl_check ZG3 viabilite_B_Horloge
+atl_check ZG3 viabilite_B_Reseau_Horloge
+atl_check ZG3 viabilite_Reseau
+atl_check ZG3 viabilite_Reseau_Horloge
+atl_check ZG3 viabilite_Horloge
+exit
