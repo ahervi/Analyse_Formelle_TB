@@ -155,7 +155,7 @@ module Ah
 
 -- emission de m3 et armement de Tmsg4
 
-	[] (pcA=5) & f_EOOk_a & Ka & EOOk_a -> sendM3':= true; timer_triggered_ATmsg4':= true; f_SUBk_a':=true; pcA':=6
+	[] (pcA=5) & f_EOOk_a & Ka & EOOk_a -> sendM3':= true; timer_triggered_ATmsg4':= true; pcA':=6
 
 
 -- expiration de Tmsg4 apres l'emission de m3 SANS retablissement
@@ -165,7 +165,7 @@ module Ah
 
 -- expiration de Tmsg4 : debut du retablissment par le calcul de SUBk_a 
 
-	[] (pcA=6) & sendM3 & ~M4 & TimeOut_ATmsg4 & ~TimeOut_Tglobal & f_SUBk_a -> SUBk_a':=true; pcA':=9
+	[] (pcA=6) & sendM3 & ~M4 & TimeOut_ATmsg4 & ~TimeOut_Tglobal -> f_SUBk_a':=true; SUBk_a':=true; pcA':=9
 
 
 -- suite du retablissment : envoie de m5
@@ -406,14 +406,14 @@ module Horloge
 
 	atom timerr_Tglobal
 	controls TimeOut_Tglobal, timerOn_Tglobal
-	reads timer_triggered_Tglobal, timerOn_Tglobal, TimeOut_Tglobal
+	reads timer_triggered_Tglobal, timerOn_Tglobal, TimeOut_Tglobal, TimeOut_BTmsg3, TimeOut_ATmsg2, TimeOut_ATmsg4
 	
 	init	[] true -> TimeOut_Tglobal':= false; timerOn_Tglobal':=false
 	
 	update
 		[] timer_triggered_Tglobal & ~TimeOut_Tglobal -> timerOn_Tglobal':=true
 		[] timerOn_Tglobal -> 
-		[] timerOn_Tglobal -> TimeOut_Tglobal':=true; timerOn_Tglobal':=false
+		[] timerOn_Tglobal & TimeOut_ATmsg2 & TimeOut_BTmsg3 & TimeOut_ATmsg4 -> TimeOut_Tglobal':=true; timerOn_Tglobal':=false
 	endatom
 
 endmodule
