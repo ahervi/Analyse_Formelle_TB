@@ -22,7 +22,7 @@
 
 
 
-module A
+module Ah
 
 	external 
 
@@ -47,7 +47,7 @@ module A
 		timer_triggered_ATmsg2, timer_triggered_ATmsg4, timer_triggered_Tglobal : bool
 	
 
-	atom A_general
+	atom A_honest
 
 	controls
 
@@ -198,7 +198,7 @@ endatom
 endmodule
 
 
-module B
+module Bh
 
 	external 
 
@@ -225,7 +225,7 @@ module B
 
 	
 
-	atom B_general
+	atom B_honest
 
 	controls
 
@@ -515,4 +515,4 @@ atom canal_Tiers2AetB_fiable
 endatom
 endmodule
 
-ZG4 := A || B || Tiers_de_confiance || reseau_delai_fini_non_fiable_A_B_Tiers || Horloge
+ZG4 := Ah || Bh || Tiers_de_confiance || reseau_delai_fini_non_fiable_A_B_Tiers || Horloge
