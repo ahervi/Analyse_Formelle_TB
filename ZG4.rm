@@ -1,16 +1,16 @@
--- fichier ZG3.rm
+-- fichier ZG4.rm
 -- protocole de non repudiation de Zhou & Gollmann 97 offline 2
 ----> perte de message
 ----> retablissement
 ----> timers locauxread_module ZG3.rm
 ----> 1 timer global
-
--- initiateur honnete de la communication : Ah
--- participant honnete a la communication : Bh
+----> un comportement malhonnete de B
+-- initiateur general de la communication : A
+-- participant general de la communication : B
 -- tiers de confiance : 1/3_C
 
 -- reseau a delai fini mais non fiable : reseau_delai_fini_non_fiable_A_B_Tiers
--- fiables : Ah <--> 1/3_C et Bh <--> 1/3_C ; non fiable : Ah <--> Bh
+-- fiables : A <--> 1/3_C et B <--> 1/3_C ; non fiable : A <--> B
 
 -- Introduction de timers representes par des atomes : 
 ------ 3 Timers locaux :
@@ -22,7 +22,7 @@
 
 
 
-module Ah
+module A
 
 	external 
 
@@ -47,7 +47,7 @@ module Ah
 		timer_triggered_ATmsg2, timer_triggered_ATmsg4, timer_triggered_Tglobal : bool
 	
 
-	atom A_honest
+	atom A_general
 
 	controls
 
@@ -198,7 +198,7 @@ endatom
 endmodule
 
 
-module Bh
+module B
 
 	external 
 
@@ -225,7 +225,7 @@ module Bh
 
 	
 
-	atom B_honest
+	atom B_general
 
 	controls
 
@@ -515,4 +515,4 @@ atom canal_Tiers2AetB_fiable
 endatom
 endmodule
 
-ZG3 := Ah || Bh || Tiers_de_confiance || reseau_delai_fini_non_fiable_A_B_Tiers || Horloge
+ZG4 := A || B || Tiers_de_confiance || reseau_delai_fini_non_fiable_A_B_Tiers || Horloge
