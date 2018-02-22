@@ -1,0 +1,17 @@
+Welcome to MOCHA 1.0
+Please report any problems to mocha@eecs.berkeley.edu
+Module Ah is composed and checked in.
+Module Bh is composed and checked in.
+Module Horloge is composed and checked in.
+Module Tiers_de_confiance is composed and checked in.
+Module reseau_delai_fini_non_fiable_A_B_Tiers is composed and checked in.
+Module ZG3 is composed and checked in.
+parse successful.
+A_non_repudiation
+A_non_repudiation_B
+A_non_repudiation_B_reseau
+A_non_repudiation_B_Horloge
+A_non_repudiation_B_reseau_Horloge
+A_non_repudiation_reseau
+A_non_repudiation_reseau_Horloge
+A_non_repudiation_Horloge

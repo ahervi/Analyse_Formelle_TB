@@ -1,5 +1,5 @@
 read_module ZG3.rm
-read_spec ZG3_ATL_A_non_repudiation.spec
+read_spec ZG3_ATL_B_non_repudiation.spec
 
 atl_check ZG3 B_non_repudiation
 atl_check ZG3 B_non_repudiation_A
