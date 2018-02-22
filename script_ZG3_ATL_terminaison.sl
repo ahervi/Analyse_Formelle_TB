@@ -1,0 +1,20 @@
+read_module ZG3.rm
+read_spec ZG3_ATL.spec
+
+atl_check ZG3 terminaison
+atl_check ZG3 terminaison_A
+atl_check ZG3 terminaison_A_B
+atl_check ZG3 terminaison_A_Reseau
+atl_check ZG3 terminaison_A_Horloge
+atl_check ZG3 terminaison_A_B_Reseau
+atl_check ZG3 terminaison_A_B_Horloge
+atl_check ZG3 terminaison_A_Reseau_Horloge
+atl_check ZG3 terminaison_A_B_Reseau_Horloge
+atl_check ZG3 terminaison_B
+atl_check ZG3 terminaison_B_Reseau
+atl_check ZG3 terminaison_B_Horloge
+atl_check ZG3 terminaison_B_Reseau_Horloge
+atl_check ZG3 terminaison_Reseau
+atl_check ZG3 terminaison_Reseau_Horloge
+atl_check ZG3 terminaison_Horloge
+exit

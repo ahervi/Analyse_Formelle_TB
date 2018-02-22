@@ -1,5 +1,7 @@
 -- proprietes ATL associees au programme ZG3
 
+
+
 -- TERMINAISON de Ah et Bh
 atl "terminaison" 
 <<>> F(STOPa & STOPb);
@@ -226,6 +228,7 @@ atl "A_non_repudiation_Horloge"
 ~<<Horloge >> F(EOOb & EOOk_b & ~<<Ah>> F(EORa & EORk_a));
 
 
+
 -- NON_REPUDIATION de B
 atl "B_non_repudiation"
 ~<< >> F(EORa & EORk_a & ~<<Bh>> F(EOOb & EOOk_b));
@@ -250,8 +253,4 @@ atl "B_non_repudiation_reseau_Horloge"
 
 atl "B_non_repudiation_Horloge"
 ~<<Horloge>> F(EORa & EORk_a & ~<<Bh>> F(EOOb & EOOk_b));
-
-
-
-
 
