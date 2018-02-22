@@ -319,7 +319,8 @@ module Bh
 	[] (pcB=3) & sendM2 & M3 -> f_EOOk_b':= true; EOOk_b':= true; Kb' := true; pcB':=4
 
 
--- expiration de Tglobal en attendant M3 : pas de retablissment -> n'arrive jamais avec le timer global actuel
+
+-- expiration de Tglobal en attendant M3: pas de retablissment -> N'arrive jamais avec le timer global actuel
 
 	[] (pcB=3) & sendM2 & ~M3 & TimeOut_Tglobal -> pcB':=6
 
@@ -341,6 +342,9 @@ module Bh
 
 	[] (pcB=4) & f_EOOk_b & EOOk_b & Kb -> f_EORk_b' := true; EORk_b':= true; pcB':=5
 
+-- comportement malhonnete : s'arrete immediatement apres avoir recu m3
+
+	[] (pcB=4) & f_EOOk_b & EOOk_b & Kb -> pcB':=6
 
 
 -- emission de m4
