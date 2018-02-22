@@ -5,7 +5,7 @@ Module Bh is composed and checked in.
 Module Horloge is composed and checked in.
 Module Tiers_de_confiance is composed and checked in.
 Module reseau_delai_fini_non_fiable_A_B_Tiers is composed and checked in.
-Module ZG3 is composed and checked in.
+Module ZG4 is composed and checked in.
 parse successful.
 terminaison
 terminaison_A
@@ -121,7 +121,7 @@ ATL_CHECK: formula "viabilite_B_Reseau" failed
 ATL_CHECK: formula "viabilite_B_Horloge" failed
 ATL_CHECK: formula "viabilite_B_Reseau_Horloge" passed
 ATL_CHECK: formula "viabilite_Reseau" failed
-ATL_CHECK: formula "viabilite_Reseau_Horloge" passed
+ATL_CHECK: formula "viabilite_Reseau_Horloge" failed
 ATL_CHECK: formula "viabilite_Horloge" failed
 ATL_CHECK: formula "Atimeliness" failed
 ATL_CHECK: formula "Atimeliness_A" failed
@@ -140,12 +140,3 @@ ATL_CHECK: formula "Atimeliness_Reseau" failed
 ATL_CHECK: formula "Atimeliness_Reseau_Horloge" passed
 ATL_CHECK: formula "Atimeliness_Horloge" passed
 ATL_CHECK: formula "Btimeliness" failed
-ATL_CHECK: formula "Btimeliness_A" failed
-ATL_CHECK: formula "Btimeliness_A_B" failed
-ATL_CHECK: formula "Btimeliness_A_Reseau" failed
-ATL_CHECK: formula "Btimeliness_A_Horloge" failed
-ATL_CHECK: formula "Btimeliness_A_B_Reseau" failed
-ATL_CHECK: formula "Btimeliness_A_B_Horloge" failed
-ATL_CHECK: formula "Btimeliness_A_Reseau_Horloge" passed
-ATL_CHECK: formula "Btimeliness_A_B_Reseau_Horloge" passed
-ATL_CHECK: formula "Btimeliness_B" failed
