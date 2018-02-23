@@ -140,3 +140,130 @@ ATL_CHECK: formula "Atimeliness_Reseau" failed
 ATL_CHECK: formula "Atimeliness_Reseau_Horloge" passed
 ATL_CHECK: formula "Atimeliness_Horloge" passed
 ATL_CHECK: formula "Btimeliness" failed
+Welcome to MOCHA 1.0
+Please report any problems to mocha@eecs.berkeley.edu
+Module Ah is composed and checked in.
+Module Bh is composed and checked in.
+Module Horloge is composed and checked in.
+Module Tiers_de_confiance is composed and checked in.
+Module reseau_delai_fini_non_fiable_A_B_Tiers is composed and checked in.
+Module ZG4 is composed and checked in.
+parse successful.
+terminaison
+terminaison_A
+terminaison_A_B
+terminaison_A_Reseau
+terminaison_A_Horloge
+terminaison_A_B_Reseau
+terminaison_A_B_Horloge
+terminaison_A_Reseau_Horloge
+terminaison_A_B_Reseau_Horloge
+terminaison_B
+terminaison_B_Reseau
+terminaison_B_Horloge
+terminaison_B_Reseau_Horloge
+terminaison_Reseau
+terminaison_Reseau_Horloge
+terminaison_Horloge
+viabilite
+viabilite_A
+viabilite_A_B
+viabilite_A_Reseau
+viabilite_A_Horloge
+viabilite_A_B_Reseau
+viabilite_A_B_Horloge
+viabilite_A_Reseau_Horloge
+viabilite_A_B_Reseau_Horloge
+viabilite_B
+viabilite_B_Reseau
+viabilite_B_Horloge
+viabilite_B_Reseau_Horloge
+viabilite_Reseau
+viabilite_Reseau_Horloge
+viabilite_Horloge
+Atimeliness
+Atimeliness_A
+Atimeliness_A_B
+Atimeliness_A_Reseau
+Atimeliness_A_Horloge
+Atimeliness_A_B_Reseau
+Atimeliness_A_B_Horloge
+Atimeliness_A_Reseau_Horloge
+Atimeliness_A_B_Reseau_Horloge
+Atimeliness_B
+Atimeliness_B_Reseau
+Atimeliness_B_Horloge
+Atimeliness_B_Reseau_Horloge
+Atimeliness_Reseau
+Atimeliness_Reseau_Horloge
+Atimeliness_Horloge
+Btimeliness
+Btimeliness_A
+Btimeliness_A_B
+Btimeliness_A_Reseau
+Btimeliness_A_Horloge
+Btimeliness_A_B_Reseau
+Btimeliness_A_B_Horloge
+Btimeliness_A_Reseau_Horloge
+Btimeliness_A_B_Reseau_Horloge
+Btimeliness_B
+Btimeliness_B_Reseau
+Btimeliness_B_Horloge
+Btimeliness_B_Reseau_Horloge
+Btimeliness_Reseau
+Btimeliness_Reseau_Horloge
+Btimeliness_Horloge
+A_non_repudiation
+A_non_repudiation_B
+A_non_repudiation_B_reseau
+A_non_repudiation_B_Horloge
+A_non_repudiation_B_reseau_Horloge
+A_non_repudiation_reseau
+A_non_repudiation_reseau_Horloge
+A_non_repudiation_Horloge
+B_non_repudiation
+B_non_repudiation_A
+B_non_repudiation_A_reseau
+B_non_repudiation_A_Horloge
+B_non_repudiation_A_reseau_Horloge
+B_non_repudiation_reseau
+B_non_repudiation_reseau_Horloge
+B_non_repudiation_Horloge
+Ordering variables using sym_static_order
+Transition relation computed : 11 conjuncts
+Calling Dynamic Reordering with sift
+Done initializing image info...
+ATL_CHECK: formula "Btimeliness" failed
+ATL_CHECK: formula "Btimeliness_A" failed
+ATL_CHECK: formula "Btimeliness_A_B" failed
+ATL_CHECK: formula "Btimeliness_A_Reseau" failed
+ATL_CHECK: formula "Btimeliness_A_Horloge" failed
+ATL_CHECK: formula "Btimeliness_A_B_Reseau" failed
+ATL_CHECK: formula "Btimeliness_A_B_Horloge" failed
+ATL_CHECK: formula "Btimeliness_A_Reseau_Horloge" passed
+ATL_CHECK: formula "Btimeliness_A_B_Reseau_Horloge" passed
+ATL_CHECK: formula "Btimeliness_B" failed
+ATL_CHECK: formula "Btimeliness_B_Reseau" failed
+ATL_CHECK: formula "Btimeliness_B_Horloge" failed
+ATL_CHECK: formula "Btimeliness_B_Reseau_Horloge" passed
+ATL_CHECK: formula "Btimeliness_Reseau" failed
+ATL_CHECK: formula "Btimeliness_Reseau_Horloge" passed
+ATL_CHECK: formula "Btimeliness_Horloge" failed
+ATL_CHECK: formula "A_non_repudiation" passed
+ATL_CHECK: formula "A_non_repudiation_B" passed
+ATL_CHECK: formula "A_non_repudiation_B_reseau" passed
+ATL_CHECK: formula "A_non_repudiation_B_Horloge" passed
+ATL_CHECK: formula "A_non_repudiation_B_reseau_Horloge" failed
+ATL_CHECK: formula "A_non_repudiation_reseau" passed
+ATL_CHECK: formula "A_non_repudiation_reseau_Horloge" failed
+ATL_CHECK: formula "A_non_repudiation_Horloge" passed
+ATL_CHECK: formula "B_non_repudiation" passed
+ATL_CHECK: formula "B_non_repudiation_A" passed
+ATL_CHECK: formula "B_non_repudiation_A_reseau" passed
+ATL_CHECK: formula "B_non_repudiation_A_Horloge" passed
+ATL_CHECK: formula "B_non_repudiation_A_reseau_Horloge" failed
+ATL_CHECK: formula "B_non_repudiation_reseau" passed
+ATL_CHECK: formula "B_non_repudiation_reseau_Horloge" passed
+ATL_CHECK: formula "B_non_repudiation_Horloge" passed
+Thank you for using MOCHA 1.0
+
