@@ -1,6 +1,0 @@
-In MOCHA:
-tcsh
-source csetup
-cd Analyse_Formelle_TB
-Now use mocha
-../mocha -t
